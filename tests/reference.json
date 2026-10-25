@@ -1,0 +1,50 @@
+{
+  "id": "E144",
+  "value": 300.0,
+  "method": "Independent Python Decimal evaluation at 90 decimal digits; mathematical constants supplied to at least 85 digits. Expected numbers rounded once to IEEE-754 binary64. No JS imports.",
+  "cases": [
+    {
+      "name": "below Nyquist passes unchanged",
+      "values": {
+        "f": 200
+      },
+      "expected": 200.0
+    },
+    {
+      "name": "at Nyquist frequency",
+      "values": {
+        "f": 500
+      },
+      "expected": 500.0
+    },
+    {
+      "name": "integer sampling harmonic folds to DC",
+      "values": {
+        "f": 3000
+      },
+      "expected": 0.0
+    },
+    {
+      "name": "just above a sampling harmonic",
+      "values": {
+        "f": 3000.25
+      },
+      "expected": 0.25
+    },
+    {
+      "name": "excessive folding count rejected",
+      "values": {
+        "f": 1e+20,
+        "fs": 1
+      },
+      "throws": true
+    },
+    {
+      "name": "zero frequency stays DC",
+      "values": {
+        "f": 0
+      },
+      "expected": 0.0
+    }
+  ]
+}
